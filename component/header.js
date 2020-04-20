@@ -17,20 +17,20 @@
 
     const styles = theme => ({
         navbar: {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.grey.light,
             
         },
         img : {
             height : '40px'
         },
         input : {
-            color : theme.palette.grey.light,
-            borderColor : theme.palette.grey.light + '!important',
+            color : theme.palette.primary.main,
+            borderColor : theme.palette.primary.main + '!important',
             borderWidth : '1px'
         },
         navLink : {
             textDecoration : 'none !important',
-            color : theme.palette.grey.light,
+            color : theme.palette.primary.main,
             "&:hover" : {
                 color : theme.palette.secondary.main
 
@@ -73,12 +73,12 @@
                                              </Typography>
                                         </Box>
                                     </Link>
-                                    <form noValidate autoComplete="off" style={{width : '400px'}}>
+                                    <form noValidate autoComplete="off" style={{width : '40%'}}>
                                         <TextField 
-                                        style={{width : '400px'}}
+                                        style={{width : '100%'}}
                                         className={style.input}
                                         size="small"
-                                        color="secondary"
+                                        color="primary"
                                         placeholder='Rechercher'  
                                          InputProps={{
                                             startAdornment: (
