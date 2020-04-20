@@ -20,7 +20,7 @@ class products extends React.Component {
         client.query({
             query: gql`
                 {
-                    product (id: 23) {
+                    products {
                         title
                         description
                         price

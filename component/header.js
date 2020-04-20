@@ -17,15 +17,15 @@
 
     const styles = theme => ({
         navbar: {
-            backgroundColor: theme.palette.grey.light,
+            backgroundColor: '#fff'
             
         },
         img : {
             height : '40px'
         },
         input : {
-            color : theme.palette.primary.main,
-            borderColor : theme.palette.primary.main + '!important',
+            color : theme.palette.secondary.main,
+            borderColor : theme.palette.secondary.main + '!important',
             borderWidth : '1px'
         },
         navLink : {
@@ -78,7 +78,7 @@
                                         style={{width : '100%'}}
                                         className={style.input}
                                         size="small"
-                                        color="primary"
+                                        color="secondary"
                                         placeholder='Rechercher'  
                                          InputProps={{
                                             startAdornment: (

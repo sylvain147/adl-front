@@ -7,6 +7,8 @@ import theme from '../src/theme';
 import {UserContext} from "../component/UserContext";
 import fetch from "isomorphic-unfetch";
 import Header from '../component/header'
+import Menu from '../component/menu'
+
 
 
 export default class MyApp extends App {
@@ -47,6 +49,7 @@ export default class MyApp extends App {
                         <CssBaseline/>
 
                         <Header/>
+                        <Menu />
                         <Component {...pageProps} />
 
                     </ThemeProvider>
