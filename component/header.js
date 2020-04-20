@@ -99,7 +99,6 @@
 
                             </Toolbar>
                         </AppBar>
-                    <Toolbar/>
                     <div id={"userContainer"} style={style.userContainer}>
                         {this.getUser()}
                     </div>

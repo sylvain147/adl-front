@@ -8,10 +8,21 @@ import {UserContext} from "../component/UserContext";
 import fetch from "isomorphic-unfetch";
 import Header from '../component/header'
 import Menu from '../component/menu'
+import Grid from '@material-ui/core/Grid';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+
+
+const style = theme => ({
+   root: {
+    flexGrow: 1
+    }
+  
+})
 
 
 
-export default class MyApp extends App {
+ class MyApp extends App {
     state = {
         connecting : true,
         user: null
@@ -37,6 +48,8 @@ export default class MyApp extends App {
 
     render() {
         const {Component, pageProps} = this.props;
+        let style = this.props.classes
+
 
         return (
             <React.Fragment>
@@ -47,10 +60,20 @@ export default class MyApp extends App {
                     <ThemeProvider theme={theme}>
                         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                         <CssBaseline/>
+                        <div className={style.root}>
+                             <Grid container spacing={3}>
+                                <Grid  xs={12}>
+                                    <Header/>
+                                 </Grid>
+                                 <Grid  xs={3}>
+                                    <Menu />
+                                 </Grid>
+                                 <Grid xs={6}>
+                                    <Component {...pageProps} />
+                                 </Grid>
+                             </Grid>
+                        </div>
 
-                        <Header/>
-                        <Menu />
-                        <Component {...pageProps} />
 
                     </ThemeProvider>
                 </UserContext.Provider>
@@ -58,3 +81,4 @@ export default class MyApp extends App {
         );
     }
 }
+export default withStyles(style) (MyApp);

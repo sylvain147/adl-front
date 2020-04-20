@@ -14,9 +14,10 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 const style = theme => ({
 	menu : {
-		width : '400px',
+		width : '100%',
 		textAlign : 'right',
-		border : `1px solid ${theme.palette.secondary.main}`
+		border : `1px solid ${theme.palette.secondary.main}`,
+		position : 'sticky'
 	},
 	nested : {
 		paddingLeft : '100px',
