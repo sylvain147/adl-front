@@ -141,9 +141,10 @@ class registerModal extends React.Component {
 
         return (
             <div style={{display: 'inline-block'}}>
-                <span style={{color: '#556cd6', cursor: 'pointer'}} onClick={this.handleOpen}>
+
+                <Button variant="contained" color="secondary" onClick={this.handleOpen}>
                     Créer un compte
-                </span>
+                </Button>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"

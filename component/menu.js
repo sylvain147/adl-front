@@ -15,13 +15,39 @@ import StarBorder from '@material-ui/icons/StarBorder';
 const style = theme => ({
 	menu : {
 		width : '100%',
-		textAlign : 'right',
-		border : `1px solid ${theme.palette.secondary.main}`,
-		position : 'sticky'
+		display : 'flex',
+		justifyContent : 'center',
+		flexWrap : 'wrap',
 	},
-	nested : {
-		paddingLeft : '100px',
+	link : {
+		paddingLeft : '20px',
+		textAlign : 'center',
+		borderLeft : '1px solid #ffd9f6',
+		paddingight : '20px',
+		height : '100%',
+		color : 'rgb(239, 53, 233)',
+		textAlign: 'center',
+		padding : '7px 20px',
+		fontStyle : 'italic',
+		borderBottom : '1px solid #ffd9f6',
 
+
+	},
+	selected : {
+		paddingLeft : '20px',
+		textAlign : 'center',
+		paddingight : '20px',
+		height : '100%',
+		backgroundColor : '#ffd9f6',
+		color : '#000',
+
+		textAlign: 'center',
+		padding : '7px 20px',
+		fontStyle : 'italic'
+	},
+	title : {
+		color : theme.palette.primary.main,
+		fontWeight : 'bold'
 	}
 })
 class Menu extends React.Component {
@@ -31,68 +57,14 @@ class Menu extends React.Component {
 	render () {
 		let classes = this.props.classes
 		return (
-    <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      className={classes.menu}
-    >
-      <ListItem button>
-        <ListItemText primary="Catégories" />
-      </ListItem>
-       <Collapse in={true} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="adlpour Lui " />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="adlpour Elle " />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="adlpour les petits " />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="adlpour tous " />
-          </ListItem>
-        </List>
-      </Collapse>
-      <ListItem button>
-        <ListItemText primary="Tags" />
-      </ListItem>
-      <Collapse in={true} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Tag 1" />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Tag 1" />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Tag 1" />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Tag 1" />
-          </ListItem>
-        </List>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Tag 1" />
-          </ListItem>
-        </List>
-      </Collapse>
-    </List>
-  );
+			<div className={classes.menu}>
+			<span className={classes.selected}>Accueil</span>
+			<span className={classes.link}>Pour Lui</span>
+			<span className={classes.link}>Pour Elle</span>
+			<span className={classes.link}>Pour les enfants</span>
+			<span className={classes.link}>Pour tous</span>
+			</div>
+			);
 	}
 }
 export default withStyles(style)(Menu)

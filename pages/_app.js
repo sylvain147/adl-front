@@ -61,11 +61,11 @@ const style = theme => ({
                         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                         <CssBaseline/>
                         <div className={style.root}>
-                             <Grid container spacing={3}>
+                             <Grid container >
                                 <Grid  xs={12}>
                                     <Header/>
                                  </Grid>
-                                 <Grid  xs={3}>
+                                 <Grid  xs={12}>
                                     <Menu />
                                  </Grid>
                                  <Grid xs={6}>

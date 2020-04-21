@@ -122,15 +122,23 @@ class loginModal extends React.Component {
             progress: {
                 display: this.state.hideForm ? 'block' : 'none',
                 width: '300px'
+            },
+            connectButtons : {
+                color: `rgb(239, 53, 233)`,
+                backgroundColor: `#fff`,
+                cursor: `pointer`,
+                display: `inline-block`,
+                border: `1px solid #fff`,
+                padding: `10px 20px`,
+                transition: `200ms`,
+                boxShadow: `0px 0px 17px -11px rgba(0,0,0,1)`
             }
         };
 
 
         return (
-            <div style={{display: 'inline-block'}}>
-                <span style={{color : '#556cd6', cursor:'pointer'}} onClick={this.handleOpen}>
-                    Se connecter
-                </span>
+            <div style={style.connectButtons} style={{display: 'inline-block'}}>
+             <Button variant="contained" color="test"  onClick={this.handleOpen}>Se connecter</Button>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"

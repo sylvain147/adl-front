@@ -13,20 +13,21 @@
     import TextField from '@material-ui/core/TextField';
     import InputAdornment from '@material-ui/core/InputAdornment';
     import SearchIcon from '@material-ui/icons/Search';
+    import Button from '@material-ui/core/Button';
+
 
 
     const styles = theme => ({
         navbar: {
-            backgroundColor: '#fff'
+            backgroundColor: theme.palette.primary.main,
+            boxShadow : 'none'
             
         },
         img : {
             height : '40px'
         },
         input : {
-            color : theme.palette.secondary.main,
-            borderColor : theme.palette.secondary.main + '!important',
-            borderWidth : '1px'
+           backgroundColor : '#fff'
         },
         navLink : {
             textDecoration : 'none !important',
@@ -34,6 +35,34 @@
             "&:hover" : {
                 color : theme.palette.secondary.main
 
+            }
+        },
+        text :{
+            '& MuiOutlinedInput-notchedOutline':{
+                backgroundColor : '#fff !important'
+            },
+            '& label.Mui-focused': {
+                color: '#fff',
+                borderColor: '#fff',
+            },
+            '& .MuiInput-underline:after': {
+                borderBottomColor: '#fff',
+                borderColor: '#fff',
+                color: '#fff',
+            },
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: '#fff',
+                    color: '#fff',
+                },
+            },
+            '&:hover fieldset': {
+                borderColor: '#fff',
+                color: '#fff',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#fff',
+                color: '#fff',
             }
         }
     });
@@ -46,7 +75,7 @@
                 return <span onClick={this.showUser} id="showUser">
                 <AccountCircleIcon style={{cursor: 'pointer'}}/></span>
             }
-                return  <div><LoginModal id="login"/> / <RegisterModal /></div>
+                return  <div><LoginModal id="login"/>  <RegisterModal /></div>
             }
             getUser() {
                 if (this.context.user != null) {
@@ -74,23 +103,8 @@
                                         </Box>
                                     </Link>
                                     <form noValidate autoComplete="off" style={{width : '40%'}}>
-                                        <TextField 
-                                        style={{width : '100%'}}
-                                        className={style.input}
-                                        size="small"
-                                        color="secondary"
-                                        placeholder='Rechercher'  
-                                         InputProps={{
-                                            startAdornment: (
-                                                 <InputAdornment position="start">
-                                                     <SearchIcon />
-                                                 </InputAdornment>
-                                            ),
-                                            className : style.input
-                                        
-                                        }}
+  <TextField id="outlined-basic" className={style.text} label="Outlined" variant="outlined" />
 
-                                        />
                                     </form>
                                     <Box display="flex"  justifyContent="flex-end" alignItems="center"> 
                                         {this.getUserStatus()}
