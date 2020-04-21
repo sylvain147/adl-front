@@ -3,7 +3,7 @@ import {red} from '@material-ui/core/colors';
 
 // Create a theme instance.
 const theme = createMuiTheme({
-    button : function (bgColor = "#fff",color = "#13395d",bgColorHover ='#9B77AE', colorHover='#fff',border=null) {
+    button : function (bgColor = "#fff",color = "#13395d",bgColorHover ='#dbabc8', colorHover='#fff',border=null) {
         return ({
             backgroundColor : bgColor ?? "#fff",
             color : color ?? "#13395d",
@@ -16,7 +16,7 @@ const theme = createMuiTheme({
             '&:hover' : {
                 transform: 'translate(-2px,-3px)',
                 boxShadow: '0px 15px 20px rgba(0,0,0, 0.4)',
-                backgroundColor : bgColorHover ?? '#9B77AE',
+                backgroundColor : bgColorHover ?? '#dbabc8',
                 color : colorHover ?? '#fff'
             }
             })
@@ -35,7 +35,7 @@ const theme = createMuiTheme({
             main: '#13395d',
         },
         secondary: {
-            main: '#9B77AE',
+            main: '#dbabc8',
         },
     },
 });
