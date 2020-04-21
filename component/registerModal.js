@@ -10,28 +10,35 @@ import {Box} from "@material-ui/core";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
-
-const CssTextField = withStyles({
-    root: {
-        '& .MuiFormLabel-root': {
-            color: '#E9EAE9',
-            fontWeight: 'bold',
-            fontSize: '20px'
-        },
-        '& .MuiInputBase-input': {
-            color: '#E9EAE9',
-            paddingTop: '15px'
-        },
-        '& .MuiInput-underline:before': {
-            borderBottomColor: '#E9EAE9'
-        },
-        '& .MuiInput-underline:hover:not(.Mui-disabled):before, .MuiInput-colorSecondary.MuiInput-underline:after,.MuiInput-underline:before':
-            {
-                borderBottomColor: '#E9EAE9'
-            },
+const style = theme =>({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-})(TextField);
-
+    paper: {
+        backgroundColor: "#EF476F",
+        padding: '50px 10px',
+        width: '500px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: 'none',
+    },
+    validate: {
+        textAlign: 'center',
+        width: '100%',
+        marginTop: '10px'
+    },
+    form: {
+        display:'none'
+    },
+    progress: {
+        display: 'none',
+        width: '300px'
+    },
+    button : theme.button()
+})
 class registerModal extends React.Component {
     constructor(props) {
         super(props);
@@ -108,43 +115,15 @@ class registerModal extends React.Component {
     };
 
     render() {
-        const style = {
-            modal: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            },
-            paper: {
-                backgroundColor: "#EF476F",
-                padding: '50px 10px',
-                width: '500px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: 'none',
-            },
-            validate: {
-                textAlign: 'center',
-                width: '100%',
-                marginTop: '10px'
-            },
-            form: {
-                display: this.state.hideForm ? 'none' : 'block'
-            },
-            progress: {
-                display: this.state.hideForm ? 'block' : 'none',
-                width: '300px'
-            }
-
-        };
+        let style = this.props.classes
 
 
         return (
             <div style={{display: 'inline-block'}}>
 
-                <Button variant="contained" color="secondary" onClick={this.handleOpen}>
+                <div className={style.button} onClick={this.handleOpen}>
                     Créer un compte
-                </Button>
+                </div>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
@@ -162,37 +141,6 @@ class registerModal extends React.Component {
                             <LinearProgress style={style.progress}/>
                             <form onSubmit={this.handleSubmit} style={style.form}>
                                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                                    <CssTextField id="email"
-                                                  style={{margin: 25, color: '##E9EAE9'}}
-                                                  margin="normal"
-                                                  InputLabelProps={{
-                                                      shrink: true,
-                                                  }}
-                                                  label="Email"
-                                                  onChange={this.changeMail}
-                                                  required
-                                    />
-                                    <CssTextField id="username"
-                                               label="Username"
-                                               onChange={this.changeUsername}
-                                               style={{margin: 25, color: '##E9EAE9'}}
-                                               margin="normal"
-                                               InputLabelProps={{
-                                                   shrink: true,
-                                               }}
-                                                  required
-                                    />
-                                    <CssTextField id="password"
-                                               label="Password"
-                                               type="password"
-                                               onChange={this.changePassword}
-                                               style={{margin: 25, color: '##E9EAE9'}}
-                                               margin="normal"
-                                               InputLabelProps={{
-                                                   shrink: true,
-                                               }}
-                                                  required
-                                    />
 
                                 </Box>
                                 <Box p={3} mt={3}>
@@ -224,4 +172,4 @@ class registerModal extends React.Component {
     }
 }
 
-export default registerModal;
+export default withStyles(style) (registerModal);

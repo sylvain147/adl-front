@@ -18,64 +18,43 @@
 
 
     const styles = theme => ({
+        button : theme.button,
         navbar: {
             backgroundColor: theme.palette.primary.main,
-            boxShadow : 'none'
-            
+            boxShadow : 'none',
         },
         img : {
             height : '40px'
-        },
-        input : {
-           backgroundColor : '#fff'
         },
         navLink : {
             textDecoration : 'none !important',
             color : theme.palette.primary.main,
             "&:hover" : {
                 color : theme.palette.secondary.main
-
-            }
+            },
+            width : '280px'
         },
-        text :{
-            '& MuiOutlinedInput-notchedOutline':{
-                backgroundColor : '#fff !important'
-            },
-            '& label.Mui-focused': {
-                color: '#fff',
-                borderColor: '#fff',
-            },
-            '& .MuiInput-underline:after': {
-                borderBottomColor: '#fff',
-                borderColor: '#fff',
-                color: '#fff',
-            },
-            '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                    borderColor: '#fff',
-                    color: '#fff',
-                },
-            },
-            '&:hover fieldset': {
-                borderColor: '#fff',
-                color: '#fff',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: '#fff',
-                color: '#fff',
-            }
-        }
+        offline : {
+            display : 'flex',
+            alignITems : 'center',
+            justifyContent : 'space-between',
+            width : '280px'
+        },
+        input : theme.input()
     });
     class header extends React.Component {
         showUser() {
             document.getElementById('userContainer').style.width = '500px'
         }
         getUserStatus() {
+
             if (this.context.user !== null) {
                 return <span onClick={this.showUser} id="showUser">
                 <AccountCircleIcon style={{cursor: 'pointer'}}/></span>
             }
-                return  <div><LoginModal id="login"/>  <RegisterModal /></div>
+
+
+            return <div id={"userContainer"} className={this.props.classes.offline}> <LoginModal id="login"/>  <RegisterModal /></div>
             }
             getUser() {
                 if (this.context.user != null) {
@@ -97,23 +76,17 @@
                                             <Typography>
                                                 <img className={style.img} src="/logo.jpg" alt="logo"/>
                                              </Typography>
-                                             <Typography>
-                                                | adlpoureux
-                                             </Typography>
                                         </Box>
                                     </Link>
-                                    <form noValidate autoComplete="off" style={{width : '40%'}}>
-  <TextField id="outlined-basic" className={style.text} label="Outlined" variant="outlined" />
-
-                                    </form>
-                                    <Box display="flex"  justifyContent="flex-end" alignItems="center"> 
+                                    <input type="text" className={style.input} placeholder={"Rechercher"}/>
+                                    <Box display="flex"  justifyContent="flex-end" alignItems="center">
                                         {this.getUserStatus()}
                                     </Box>
                                 </Box>
 
                             </Toolbar>
                         </AppBar>
-                    <div id={"userContainer"} style={style.userContainer}>
+                    <div>
                         {this.getUser()}
                     </div>
                     </React.Fragment>

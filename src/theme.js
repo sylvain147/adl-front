@@ -1,46 +1,43 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import {createMuiTheme} from '@material-ui/core/styles';
+import {red} from '@material-ui/core/colors';
 
 // Create a theme instance.
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#13395d',
+    button : function (bgColor = "#fff",color = "#13395d",bgColorHover ='#9B77AE', colorHover='#fff',border=null) {
+        return ({
+            backgroundColor : bgColor ?? "#fff",
+            color : color ?? "#13395d",
+            padding : '10px 20px',
+            borderRadius : '7px',
+            cursor : 'pointer',
+            boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
+            border : border,
+            transition : '300ms',
+            '&:hover' : {
+                transform: 'translate(-2px,-3px)',
+                boxShadow: '0px 15px 20px rgba(0,0,0, 0.4)',
+                backgroundColor : bgColorHover ?? '#9B77AE',
+                color : colorHover ?? '#fff'
+            }
+            })
     },
-    secondary: {
-      main: '#4A6890',
-      light : '#4A6890'
+    input : function(padding ='9px 12px', width="500px") {
+        return({
+            borderRadius: '7px',
+            border: 'none',
+            padding : padding,
+            width : width
+        })
+
     },
-    test : '#ff0000',
-    error: {
-      main: red.A400,
+    palette: {
+        primary: {
+            main: '#13395d',
+        },
+        secondary: {
+            main: '#9B77AE',
+        },
     },
-    background: {
-      main : '#ff0000'
-    },
-    grey : {
-      light : '#f2f2f2',
-    },
-     root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
-  },
-  shadow : {
-      ext : {
-        right : '6px 0px 16px -15px'
-      }
-    },
-  navBar: {
-    link: {
-      color: '#000'
-    }
-  }
 });
 
 export default theme;

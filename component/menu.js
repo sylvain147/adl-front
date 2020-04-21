@@ -1,17 +1,5 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 const style = theme => ({
 	menu : {
 		width : '100%',
@@ -20,28 +8,27 @@ const style = theme => ({
 		flexWrap : 'wrap',
 	},
 	link : {
-		paddingLeft : '20px',
-		textAlign : 'center',
-		borderLeft : '1px solid #ffd9f6',
-		paddingight : '20px',
 		height : '100%',
-		color : 'rgb(239, 53, 233)',
+		color : '#fff',
+		backgroundColor: theme.palette.primary.main,
 		textAlign: 'center',
-		padding : '7px 20px',
+		width : '20%',
+		padding : '10px 0px',
 		fontStyle : 'italic',
-		borderBottom : '1px solid #ffd9f6',
-
-
+		cursor : 'pointer',
+		transition : 'padding 200ms',
+		'&:hover' : {
+			backgroundColor : theme.palette.secondary.main
+		}
 	},
 	selected : {
 		paddingLeft : '20px',
 		textAlign : 'center',
-		paddingight : '20px',
+		paddingRight : '20px',
+		color : theme.palette.primary.main,
+		width : '20%',
 		height : '100%',
-		backgroundColor : '#ffd9f6',
-		color : '#000',
-
-		textAlign: 'center',
+		backgroundColor : '#FFF',
 		padding : '7px 20px',
 		fontStyle : 'italic'
 	},
