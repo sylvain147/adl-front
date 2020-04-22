@@ -1,43 +1,71 @@
 import {createMuiTheme} from '@material-ui/core/styles';
-import {red} from '@material-ui/core/colors';
-
 // Create a theme instance.
+const primary = '#13395d'
+const secondary = '#dbabc8'
+const light = '#fff'
+const dark = '#000'
 const theme = createMuiTheme({
-    button : function (bgColor = "#fff",color = "#13395d",bgColorHover ='#dbabc8', colorHover='#fff',border=null) {
-        return ({
-            backgroundColor : bgColor ?? "#fff",
-            color : color ?? "#13395d",
-            padding : '10px 20px',
-            borderRadius : '7px',
-            cursor : 'pointer',
+    palette: {
+        primary: {
+            main: primary,
+        },
+        secondary: {
+            main: secondary,
+        },
+    },
+    header : {
+        navbar :  {
+            backgroundColor: primary,
+            boxShadow : 'none',
+        },
+        img : {
+            height : '40px'
+        },
+        offline : {
+            display : 'flex',
+            alignItems : 'center',
+            justifyContent : 'space-between',
+            width : '280px'
+        },
+        input : {
+                borderRadius: '7px',
+                border: 'none',
+                padding : '9px 12px',
+                width : '500px'
+        }
+    },
+    input : function (options){
+        let style = {
+            borderRadius: '7px',
+            border: 'none',
+        }
+        if(options.includes('header')) {
+            style['padding'] = '9px 12px'
+            style['width'] = '500px'
+        }
+        return style
+    },
+    button : function (options){
+        let style = {
+            padding: '10px 20px',
+            borderRadius: '7px',
+            cursor: 'pointer',
             boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
-            border : border,
             transition : '300ms',
             '&:hover' : {
                 transform: 'translate(-2px,-3px)',
                 boxShadow: '0px 15px 20px rgba(0,0,0, 0.4)',
-                backgroundColor : bgColorHover ?? '#dbabc8',
-                color : colorHover ?? '#fff'
             }
-            })
+        }
+        if(options.includes('classic')) {
+            style['backgroundColor '] = light
+            style['color'] = primary
+            style['&:hover']['backgroundColor'] = secondary
+            style['&:hover']['color'] = light
+        }
+        return style
     },
-    input : function(padding ='9px 12px', width="500px") {
-        return({
-            borderRadius: '7px',
-            border: 'none',
-            padding : padding,
-            width : width
-        })
 
-    },
-    palette: {
-        primary: {
-            main: '#13395d',
-        },
-        secondary: {
-            main: '#dbabc8',
-        },
-    },
 });
 
 export default theme;

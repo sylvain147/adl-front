@@ -15,15 +15,13 @@ class products extends React.Component {
         this.state = {
             product: null,
         };
-        this.getProducts()
 
     }
-
-    getProducts = async () => {
-        client.query({
+    static async getInitialProps() {
+        let products = await client.query({
             query: gql`
                 {
-                    products {
+                    getProducts {
                         title
                         description
                         price
@@ -35,7 +33,10 @@ class products extends React.Component {
                     }
                 }
             `
-        }).then(result => console.log(result));
+        });
+        return {products: products }
+    }
+    getProducts = async () => {
     }
 
     render() {

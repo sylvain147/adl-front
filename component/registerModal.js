@@ -37,7 +37,7 @@ const style = theme =>({
         display: 'none',
         width: '300px'
     },
-    button : theme.button()
+    button : theme.button(['classic'])
 })
 class registerModal extends React.Component {
     constructor(props) {

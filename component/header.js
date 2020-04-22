@@ -18,29 +18,12 @@
 
 
     const styles = theme => ({
-        button : theme.button,
-        navbar: {
-            backgroundColor: theme.palette.primary.main,
-            boxShadow : 'none',
-        },
-        img : {
-            height : '40px'
-        },
-        navLink : {
-            textDecoration : 'none !important',
-            color : theme.palette.primary.main,
-            "&:hover" : {
-                color : theme.palette.secondary.main
-            },
-            width : '280px'
-        },
-        offline : {
-            display : 'flex',
-            alignITems : 'center',
-            justifyContent : 'space-between',
-            width : '280px'
-        },
-        input : theme.input()
+        button : theme.button(['classic']),
+        navbar : theme.header.navbar,
+        img : theme.header.img,
+        offline : theme.header.offline,
+        input : theme.input(['header']),
+
     });
     class header extends React.Component {
         showUser() {

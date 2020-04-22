@@ -47,7 +47,7 @@ const style = theme =>({
         transition: `200ms`,
         boxShadow: `0px 0px 17px -11px rgba(0,0,0,1)`
     },
-    button : theme.button()
+    button : theme.button(['classic'])
 });
 
 class loginModal extends React.Component {
