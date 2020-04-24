@@ -1,25 +1,19 @@
-import React from "react";
-import {withRouter} from 'next/router'
-
-const axios = require("axios");
+import React, {useEffect, useState} from "react";
 import {gql} from "apollo-boost";
 import ApolloClient from 'apollo-boost';
-
 const client = new ApolloClient({
     uri: 'http://localhost:4000/',
 });
 
-class products extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            product: null,
-        };
-
+function products () {
+    function test () {
+        console.log('test')
     }
-    static async getInitialProps() {
-        let products = await client.query({
-            query: gql`
+    const [products, setProducts] = useState({});
+    useEffect(() => {
+        async function getProducts() {
+            let products = await client.query({
+                query: gql`
                 {
                     getProducts {
                         title
@@ -33,19 +27,16 @@ class products extends React.Component {
                     }
                 }
             `
-        });
-        return {products: products }
-    }
-    getProducts = async () => {
-    }
-
-    render() {
-        return (
-         <div>
-            Liste des produits
-         </div>
-        )
-    }
+            });
+            return products;
+            //setProducts(products)
+        }
+        getProducts().then((results)=> {
+            setProducts(results)
+        })
+    });
+    return (
+        <div onClick={test}>ok</div>
+    )
 }
-
 export default products
