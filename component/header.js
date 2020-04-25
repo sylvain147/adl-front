@@ -9,35 +9,39 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import User from './user'
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
-import {UserContext} from "./UserContext";
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
-
+const useStyles = makeStyles(theme => ({
+    button: theme.button(['classic']),
+    navbar: theme.header.navbar,
+    img: theme.header.img,
+    offline: theme.header.offline,
+    input: theme.input(['header']),
+}));
 function header() {
+    const style = useStyles();
+
     function showUser() {
         document.getElementById('userContainer').style.width = '500px'
     }
 
     function getUserStatus() {
 
-        if (this.context.user !== null) {
+        if (null !== null) {
             return <span onClick={this.showUser} id="showUser">
                 <AccountCircleIcon style={{cursor: 'pointer'}}/></span>
         }
 
 
-        return <div id={"userContainer"} className={this.props.classes.offline}><LoginModal id="login"/>
+        return <div id={"userContainer"} className={style.offline}><LoginModal id="login"/>
             <RegisterModal/></div>
     }
 
     function getUser() {
-        if (this.context.user != null) {
+        if (null != null) {
             return <User user={this.context.user.user} container={"userContainer"}/>
         }
         return null;
     }
+
     return (
         <React.Fragment>
             <AppBar className={style.navbar} position="sticky">
@@ -53,25 +57,17 @@ function header() {
                         </Link>
                         <input type="text" className={style.input} placeholder={"Rechercher"}/>
                         <Box display="flex" justifyContent="flex-end" alignItems="center">
-                            {this.getUserStatus()}
+                            {getUserStatus()}
                         </Box>
                     </Box>
 
                 </Toolbar>
             </AppBar>
             <div>
-                {this.getUser()}
+                {getUser()}
             </div>
         </React.Fragment>
 
     )
-    const styles = theme => ({
-        button: theme.button(['classic']),
-        navbar: theme.header.navbar,
-        img: theme.header.img,
-        offline: theme.header.offline,
-        input: theme.input(['header']),
-
-    });
-
-    export default withStyles(styles)(header)
+}
+export default header
