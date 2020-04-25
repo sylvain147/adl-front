@@ -13,51 +13,70 @@ const theme = createMuiTheme({
             main: secondary,
         },
     },
-    header : {
-        navbar :  {
+    header: {
+        navbar: {
             backgroundColor: primary,
-            boxShadow : 'none',
+            boxShadow: 'none',
         },
-        img : {
-            height : '40px'
+        img: {
+            height: '40px'
         },
-        offline : {
-            display : 'flex',
-            alignItems : 'center',
-            justifyContent : 'space-between',
-            width : '280px'
+        offline: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '280px'
         },
-        input : {
-                borderRadius: '7px',
-                border: 'none',
-                padding : '9px 12px',
-                width : '500px'
+        input: {
+            borderRadius: '7px',
+            border: 'none',
+            padding: '9px 12px',
+            width: '500px'
         }
     },
-    input : function (options){
+    product: {
+        container: {
+            display: 'flex',
+            justifyContent: 'space-around',
+            flexWrap: 'wrap'
+        },
+        small: {
+            display: 'flex',
+            flexDirection: 'column',
+            width: '220px',
+            imgContainer: {
+                width: '185px',
+                backgroundRepeat: 'no-repeat',
+                height: '185px',
+                backgroundPosition: 'center',
+                backgroundSize: 'contain'
+            }
+        }
+    },
+    input: function (options) {
         let style = {
             borderRadius: '7px',
             border: 'none',
         }
-        if(options.includes('header')) {
+        if (options.includes('header')) {
             style['padding'] = '9px 12px'
             style['width'] = '500px'
         }
         return style
     },
-    button : function (options){
+    button: function (options) {
         let style = {
             padding: '10px 20px',
             borderRadius: '7px',
             cursor: 'pointer',
             boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
-            transition : '300ms',
-            '&:hover' : {
+            transition: '300ms',
+            '&:hover': {
                 transform: 'translate(-2px,-3px)',
                 boxShadow: '0px 15px 20px rgba(0,0,0, 0.4)',
             }
         }
-        if(options.includes('classic')) {
+        if (options.includes('classic')) {
             style['backgroundColor '] = light
             style['color'] = primary
             style['&:hover']['backgroundColor'] = secondary

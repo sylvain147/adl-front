@@ -29,6 +29,7 @@ const style = theme => ({
     };
 
     componentDidMount() {
+        /*
         this.setState({connecting : true})
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side');
@@ -44,6 +45,7 @@ const style = theme => ({
         fetch(process.env.REACT_API + '/authed', obj)
             .then(response => response.status === 401 ? null : response.json())
             .then(data => this.setState({user : data, connecting : false}));
+            */
     }
 
     render() {
@@ -68,7 +70,7 @@ const style = theme => ({
                                  <Grid  xs={12}>
                                     <Menu />
                                  </Grid>
-                                 <Grid xs={6}>
+                                 <Grid xs={12}>
                                     <Component {...pageProps} />
                                  </Grid>
                              </Grid>
