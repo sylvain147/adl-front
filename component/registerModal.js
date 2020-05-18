@@ -17,7 +17,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import ApolloClient from "apollo-boost";
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/',
+    uri: 'http://35.181.43.159:4000',
 });
 function registerModal(){
     const [mail, setMail] = useState(null);
