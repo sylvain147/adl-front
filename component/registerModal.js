@@ -1,175 +1,115 @@
-import React from 'react';
-import { withStyles} from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import TextField from '@material-ui/core/TextField';
+import React, { useState, useEffect } from 'react';
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-import fetch from "isomorphic-unfetch";
-import {Box} from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import gql from 'graphql-tag';
+
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Fade from "@material-ui/core/Fade";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import {Box} from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
-const style = theme =>({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        backgroundColor: "#EF476F",
-        padding: '50px 10px',
-        width: '500px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: 'none',
-    },
-    validate: {
-        textAlign: 'center',
-        width: '100%',
-        marginTop: '10px'
-    },
-    form: {
-        display:'none'
-    },
-    progress: {
-        display: 'none',
-        width: '300px'
-    },
-    button : theme.button(['classic'])
-})
-class registerModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: null,
-            password: null,
-            hideForm: false,
-            error: false,
-            mail: null,
-            errorMessage: '',
-            open: false,
-            openBadSnack: false,
-            openGoodSnack: false
-        }
+import ApolloClient from "apollo-boost";
+const client = new ApolloClient({
+    uri: 'http://localhost:4000/',
+});
+function registerModal(){
+    const [mail, setMail] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [firstname, setFirstname] = useState(null);
+    const [lastname, setLastname] = useState(null);
+    const [username, setUsername] = useState(null);
+    const validateUser = async () => {
+        console.log('ici')
+        let values = `mutation createUser {
+                    createUser(userInput : {
+                    firstname : "${firstname}"
+                    lastname : "${lastname}"
+                    username : "${username}"
+                    email : "${mail}"
+                    password : "${password}"
+                }){
+                    firstname
+                } 
+            }`
+        console.log(values)
+        const user = await client.mutate({
+            mutation : gql` ${values}`
+        })
+        console.log(user)
     }
+    return (
+        <div style={{display: 'inline-block'}}>
 
-    changeUsername = (event) => {
-        this.setState({username: event.target.value})
-    };
-
-    changePassword = (event) => {
-        this.setState({password: event.target.value})
-    };
-
-    changeMail = (event) => {
-        this.setState({mail: event.target.value})
-    };
-
-    handleOpen = () => {
-        this.setState({open: true})
-    };
-    handleCloseBadSnack = () => {
-        this.setState({openBadSnack: false})
-    };
-    handleCloseGoodSnack = () => {
-        this.setState({openGoodSnack: false})
-    };
-
-    handleClose = () => {
-        this.setState({open: false})
-    };
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.setState({hideForm: true});
-        let obj = {
-            method: 'POST',
-            body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password,
-                email: this.state.mail
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        };
-        fetch(process.env.REACT_API + '/user', obj)
-            .then(response => {
-                    if (response.status === 400) {
-                        this.setState({
-                            openBadSnack: true,
-                            hideForm: false,
-                            error: true
-                        })
-                    } else {
-                        this.setState({
-                            openGoodSnack: true,
-                            hideForm: false,
-                            error: false
-                        })
-                    }
-                }
-            )
-    };
-
-    render() {
-        let style = this.props.classes
-
-
-        return (
-            <div style={{display: 'inline-block'}}>
-
-                <div className={style.button} onClick={this.handleOpen}>
-                    Créer un compte
-                </div>
-                <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    style={style.modal}
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                        timeout: 500,
-                    }}
-                >
-                    <Fade in={this.state.open}>
-                        <div style={style.paper}>
-                            <LinearProgress style={style.progress}/>
-                            <form onSubmit={this.handleSubmit} style={style.form}>
-                                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-
-                                </Box>
-                                <Box p={3} mt={3}>
-                                <Button type="submit" variant="contained" color='secondary'
-                                        style={style.validate}> Valider</Button>
-                                </Box>
-                            </form>
-                            <Snackbar
-                                open={this.state.openBadSnack}
-                                autoHideDuration={3000}
-                                onClose={this.handleCloseBadSnack}
-                            >
-                                <SnackbarContent style={{backgroundColor: '#d32f2f', textAlign: 'center'}}
-                                                 message="Utitlisateur déjà existant"/>
-                            </Snackbar>
-                            <Snackbar
-                                open={this.state.openGoodSnack}
-                                autoHideDuration={3000}
-                                onClose={this.handleCloseGoodSnack}
-                            >
-                                <SnackbarContent style={{backgroundColor: '#43a047', textAlign: 'center'}}
-                                                 message="Utitlisateur crée"/>
-                            </Snackbar>
-                        </div>
-                    </Fade>
-                </Modal>
+            <div onClick={() => setOpen(true)}>
+                Créer un compte
             </div>
-        );
-    }
+            <Dialog open={open}  aria-labelledby="form-dialog-title">
+                <DialogContent>
+                    <DialogContentText>
+                        Créer un nouveau compte
+                    </DialogContentText>
+                    <TextField
+                        onChange={(event)=>setMail(event.target.value)}
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Adresse email"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        onChange={(event)=>setFirstname(event.target.value)}
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="firstname"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        onChange={(event)=>setLastname(event.target.value)}
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="lastname"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        onChange={(event)=>setUsername(event.target.value)}
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="username"
+                        type="text"
+                        fullWidth
+                    />
+                    <TextField
+                        onChange={(event)=>setPassword(event.target.value)}
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="password"
+                        type="text"
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={validateUser} color="primary">
+                        Créer
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    )
 }
 
-export default withStyles(style) (registerModal);
+export default  (registerModal);
